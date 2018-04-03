@@ -1,0 +1,31 @@
+#copies-list {
+    list-style-type: none;
+}
+
+#copies-list li {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ebebeb;
+    background-color: #fff;
+    margin-bottom: 7px;
+}
+
+#copies-list li .copy-options {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ebebeb;
+}
+
+#copies-list li .copy-options .option {
+    padding: 7px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#copies-list li .copy-options .option i {
+    margin-right: 3px;
+}
+
+#copies-list li .copy-options .option:hover {
+    background-color: #ebebeb;
+}

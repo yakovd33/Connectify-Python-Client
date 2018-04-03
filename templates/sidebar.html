@@ -1,0 +1,23 @@
+<div id="sidebar-nav" class="sidebar">
+	<div class="sidebar-scroll">
+		<nav>
+			<ul class="nav">
+				<li><a href="/" class="{{ 'active' if name == 'index' else '' }}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+				<li><a href="/copies/" class="{{ 'active' if name == 'copies' else '' }}"><i class="lnr lnr-history"></i> <span>Copies</span></a></li>
+				<li><a href="/groups/" class="{{ 'active' if name == 'groups' else '' }}"><i class="lnr lnr-code"></i> <span>Groups</span></a></li>
+				<li>
+					<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Files</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+					<div id="subPages" class="collapse ">
+						<ul class="nav">
+							<li><a href="page-profile.html" class="">All</a></li>
+							<li><a href="page-profile.html" class="">Video</a></li>
+							<li><a href="page-login.html" class="">Documents</a></li>
+							<li><a href="page-lockscreen.html" class="">Music</a></li>
+						</ul>
+					</div>
+				</li>
+				<li><a href="/settings/" class=""><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
+			</ul>
+		</nav>
+	</div>
+</div>

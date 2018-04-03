@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+    <div id="wrapper">
+        <br><br><br><br>
+        <div class="vertical-align-wrap">
+            <div class="vertical-align-middle">
+                <div class="auth-box ">
+                    <div class="left">
+                        <div class="content">
+                            <div class="header">
+                                <div class="logo text-center"><img src="http://miner.bnlstudio.com/assets/img/logo-dark.png" alt="Klorofil Logo"></div>
+                                <p class="lead">Login to your account</p>
+                            </div>
+                            <div class="response" style="text-align:left;" ></div>
+                            <div class="redirect"></div>
+                            <form class="form-auth-small" action="/login_submittion" method="POST" role="login">
+                                <div class="form-group">
+                                    <label for="signin-email" class="control-label sr-only">Email</label>
+                                    <input type="email" class="form-control" name="email" id="signin-email" placeholder="samuel.gold@domain.com" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="signin-password" class="control-label sr-only">Password</label>
+                                    <input type="password" class="form-control" name="password" id="signin-password" placeholder="*******" placeholder="Password">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+                                <div class="bottom">
+                                    <span class="helper-text"><i class="fa fa-lock"></i> <a href="#">Forgot password?</a> &bull;  <a href="http://miner.bnlstudio.com/register">Register</a></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="overlay"></div>
+                        <div class="content text">
+                            <h1 class="heading">CONNECT, NOW, EVERYWHERE. </h1>
+                            <p>Connectify </p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
