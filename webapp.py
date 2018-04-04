@@ -4,6 +4,7 @@ from tendo import singleton
 import win32gui, win32con
 
 import loginHelper
+import userHelper
 import api
 
 from flask import Flask
@@ -44,7 +45,7 @@ def login_submittion () :
             json_parsed = json.loads(api_login_response)
             login_error = ""
             if json_parsed['success'] :
-                loginHelper.login(json_parsed['login_hash'])
+                loginHelper.login(json_parsed['login_hash'], json_parsed['user_id'])
                 return redirect("/")
             else :
                 if json_parsed['empty_fields'] :
@@ -69,8 +70,15 @@ def copies () :
 @app.route("/groups/")
 def groups () :
     if loginHelper.isLogged ():
-        copies = json.loads(api.post('http://connectify.rf.gd/api/get_copies.php', { 'login_hash' : loginHelper.get_login_hash() }))['copies']
-        return render_template('copies.html', name = "groups", copies = copies)
+        groups = json.loads(api.post('http://connectify.rf.gd/api/get_groups.php', { 'login_hash' : loginHelper.get_login_hash() }))['groups']
+        return render_template('copies.html', name = "groups", groups = groups)
+    else :
+        return redirect('/')
+
+@app.route("/profile/")
+def profile () :
+    if loginHelper.isLogged ():
+        return render_template('profile.html', name = "profile")
     else :
         return redirect('/')
 
@@ -84,15 +92,17 @@ def settings (tab) :
 
 @app.route("/copy/<id>/delete/")
 def delete_copy (id) :
-    response = api.post('http://connectify.rf.gd/api/copy_options.php', { 'login_hash' : loginHelper.get_login_hash(), 'copy_id' : id, 'action' : 'delete'})
-    return response
+    if loginHelper.isLogged ():
+        response = api.post('http://connectify.rf.gd/api/copy_options.php', { 'login_hash' : loginHelper.get_login_hash(), 'copy_id' : id, 'action' : 'delete'})
+        return response
+    else :
+        return redirect('/')
 
 
 # Template filters
-@app.template_filter('make_caps')
-def caps(text):
-    """Convert a string to all caps."""
-    return text.upper()
+@app.template_filter('get_user_detail')
+def get_user_detail (detail) :
+    return userHelper.get_user_details()[detail]
 
 # # # # # # # # # # # # # # #
 if __name__ == "__main__":
