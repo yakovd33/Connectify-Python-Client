@@ -1,0 +1,22 @@
+#settings-tabs-options-list {
+    list-style: none;
+}
+
+#settings-tabs-options-list li {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.settings-tab {
+    display: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.settings-tab.active {
+    display: block;
+}

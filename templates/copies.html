@@ -26,7 +26,7 @@
 								<span class="option copy-star"><i class="fa fa-star" aria-hidden="true"></i> Star</span>
 								<span class="option copy-archive"><i class="fa fa-archive" aria-hidden="true"></i> Archive</span>
 								<span class="option copy-private"><i class="fa fa-lock" aria-hidden="true"></i> Private</span>
-								<span class="option copy-delete"><i class="fa fa-trash" aria-hidden="true"></i> Delete</span>
+								<span class="option copy-delete" onclick="delete_copy('{{ copy.id }}'); $(this).parent().parent().hide()"><i class="fa fa-trash" aria-hidden="true"></i> Delete</span>
 							</div>
 						</li>
                     {% endfor %}
@@ -36,15 +36,12 @@
 		</div>
 		<!-- END MAIN -->
 		<div class="clearfix"></div>
-		<footer>
-			<div class="container-fluid">
-				<p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
-			</div>
-		</footer>
+		{% include 'footer.html' %}
 	</div>
 	<!-- END WRAPPER -->
 	<!-- Javascript -->
 {% endblock %}
 
 {% block footer %}
+	<script src="{{  url_for('static', filename='scripts/copies/copies.js') }}"></script>
 {% endblock %}

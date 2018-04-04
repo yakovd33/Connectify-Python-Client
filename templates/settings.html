@@ -1,36 +1,59 @@
-{% extends "layout.html" %}
-{% block title %}Settings{% endblock %}
-{% block head %}
-  {{ super() }}
-{% endblock %}
-{% block content %}
-	<!-- WRAPPER -->
-	<div id="wrapper">
-		<!-- NAVBAR -->
-		{% include 'navbar.html' %}
-		<!-- END NAVBAR -->
-		<!-- LEFT SIDEBAR -->
-		{% include 'sidebar.html' %}
-		<!-- END LEFT SIDEBAR -->
-		<!-- MAIN -->
-		<div class="main">
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Settings - Connectify</title>
+		<!-- VENDOR CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='vendor/linearicons/style.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='vendor/chartist/css/chartist-custom.css') }}">
+		<!-- MAIN CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/settings/settings.css') }}">
+		<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/demo.css') }}">
+		<!-- GOOGLE FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+		<!-- ICONS -->
+		<link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='img/apple-icon.png') }}">
+		<link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='img/favicon.png') }}">
+	</head>
+	<body>
+		<div id="wrapper">
+			{% include 'navbar.html' %}
+
 			<!-- MAIN CONTENT -->
 			<div class="main-content">
-                
+				<div class="col-md-3">
+					<ul id="settings-tabs-options-list">
+						<li data-tab="general" class="{{ 'active' if tab == 'general' else '' }}">General</li>
+						<li data-tab="devices" class="{{ 'active' if tab == 'devices' else '' }}">Devices</li>
+						<li data-tab="files" class="{{ 'active' if tab == 'fiels' else '' }}">Files</li>
+						<li data-tab="copies" class="{{ 'active' if tab == 'copies' else '' }}">Copies</li>
+						<li data-tab="updates" class="{{ 'active' if tab == 'updates' else '' }}">Updates</li>
+					</ul>
+				</div>
+				<div class="col-md-9">
+					<div data-tab="general" class="settings-tab {{ 'active' if tab == 'general' else '' }}">
+						tab1
+					</div>
+
+					<div data-tab="devices" class="settings-tab {{ 'active' if tab == 'devices' else '' }}">
+						tab2
+					</div>
+				</div>
 			</div>
 			<!-- END MAIN CONTENT -->
-		</div>
-		<!-- END MAIN -->
-		<div class="clearfix"></div>
-		<footer>
-			<div class="container-fluid">
-				<p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
-			</div>
-		</footer>
-	</div>
-	<!-- END WRAPPER -->
-	<!-- Javascript -->
-{% endblock %}
 
-{% block footer %}
-{% endblock %}
+			<div class="clearfix"></div>
+			{% include 'footer.html' %}
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='scripts/settings/settings.js') }}"></script>
+	</body>
+</html>

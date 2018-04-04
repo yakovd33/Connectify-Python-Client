@@ -74,12 +74,18 @@ def groups () :
     else :
         return redirect('/')
 
-@app.route("/settings/")
-def settings () :
+@app.route("/settings/", defaults = { 'tab' : 'general' })
+@app.route("/settings/<tab>/")
+def settings (tab) :
     if loginHelper.isLogged ():
-        return render_template('settings.html', name = "settings")
+        return render_template('settings.html', name = "settings", tab = tab)
     else :
         return redirect('/')
+
+@app.route("/copy/<id>/delete/")
+def delete_copy (id) :
+    response = api.post('http://connectify.rf.gd/api/copy_options.php', { 'login_hash' : loginHelper.get_login_hash(), 'copy_id' : id, 'action' : 'delete'})
+    return response
 
 
 # Template filters

@@ -1,1 +1,13 @@
-{}
+{
+  "files.exclude": {
+    "__error": "Not found",
+    ".vscode": true,
+    "connectify": true,
+    "icon.ico": true,
+    "loginHelper.py": true,
+    "notifications.py": true,
+    "README.md": true,
+    "settingsHelper.py": true,
+    "tray.py": true
+  }
+}
