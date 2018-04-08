@@ -1,0 +1,14 @@
+#group-profile-pic-select-toggle {
+    height: 100px;
+    width: 100px;
+    background-image: url("../../img/pp-placeholder.png");
+    background-size: cover;
+    border-radius: 50%;
+    margin: auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#group-profile-pic {
+    display: none;
+}

@@ -98,6 +98,10 @@ def delete_copy (id) :
     else :
         return redirect('/')
 
+@app.route("/groups/create/")
+def create_group () :
+    return render_template('create_group.html', name = "create_group")
+
 
 # Template filters
 @app.template_filter('get_user_detail')

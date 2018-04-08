@@ -1,4 +1,7 @@
 import sqlite3
+import json
+import settingsHelper
+import api
 
 def isLogged () :
     db = sqlite3.connect('connectify')
@@ -20,6 +23,23 @@ def login (login_hash, user_id) :
         cursor.execute("INSERT INTO `settings`(`name`, `value`) VALUES ('user_id', '" + user_id + "')")
         db.commit()
         cursor.close()
+
+        # Initialize device
+        if not settingsHelper.isInitialized() :
+            print("Initializing...")
+            import platform
+
+            device_name = platform.node()
+            ip = '127.0.0.1'
+
+            device_hash_resp = api.post('http://connectify.rf.gd/api/device_hash.php', {
+                'login_hash' : get_login_hash(),
+                'name' : device_name,
+                'ip' : ip
+            })
+
+            device_hash = json.loads(device_hash_resp)['hash']
+            settingsHelper.deviceInit(device_hash, device_name)
 
 def logout () :
     db = sqlite3.connect('connectify')

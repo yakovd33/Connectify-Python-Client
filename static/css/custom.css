@@ -1,0 +1,14 @@
+#wrapper .sidebar .footer {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 30px;
+    background-color: #41B314;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+#wrapper .sidebar .footer:hover {
+    background-color: rgb(60, 151, 24);
+}

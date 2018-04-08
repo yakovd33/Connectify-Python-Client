@@ -20,7 +20,9 @@
                 <ul id="copies-list">
                     {% for copy in copies %}
                         <li data-copyid="{{ copy.id }}">
-							<div id="copy{{ copy.id }}-text">{{ copy.text }}</div>
+							<span class="label label-info">{{ copy.device_name }} - {{ copy.date }}</span>
+
+							<div id="copy{{ copy.id }}-text" style="margin-top: 10px;">{{ copy.text }}</div>
 							<div class="copy-options">
 								<span class="option copy-copy" onclick="CopyToClipboard('copy{{ copy.id }}-text')"><i class="fa fa-clone" aria-hidden="true"></i> Copy</span>
 								<span class="option copy-star"><i class="fa fa-star" aria-hidden="true"></i> Star</span>

@@ -1,0 +1,5 @@
+dist
+build
+_pychache_
+*.spec
+.vscode/settings.json

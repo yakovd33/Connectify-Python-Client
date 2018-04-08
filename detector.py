@@ -53,23 +53,6 @@ def copiesDetector () :
         time.sleep(0.5)
 threading.Thread(target=copiesDetector).start()
 
-# Initialize device
-if not settingsHelper.isInitialized() :
-    print("Initializing...")
-    import platform
-
-    device_name = platform.node()
-    ip = '127.0.0.1'
-
-    device_hash_resp = api.post('http://connectify.rf.gd/api/device_hash.php', {
-        'login_hash' : loginHelper.get_login_hash(),
-        'name' : device_name,
-        'ip' : ip
-    })
-
-    device_hash = json.loads(device_hash_resp)['hash']
-    settingsHelper.deviceInit(device_hash, device_name)
-
 def exit_handler() :
     pass
     #p.terminate()
