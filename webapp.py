@@ -102,6 +102,12 @@ def delete_copy (id) :
 def create_group () :
     return render_template('create_group.html', name = "create_group")
 
+@app.route("/get_user_num_copies/")
+def get_user_num_copies () :
+    if (loginHelper.isLogged()) :
+        total_copies = json.loads(api.post('http://connectify.rf.gd/api/user_stats.php', { 'login_hash' : loginHelper.get_login_hash(), 'stat' : 'num_total_copies' }))['result']
+        return str(total_copies)
+    return 0
 
 # Template filters
 @app.template_filter('get_user_detail')

@@ -3,3 +3,4 @@ build
 _pychache_
 *.spec
 .vscode/settings.json
+Connectify-server

@@ -14,4 +14,4 @@ function CopyToClipboard(containerid) {
     document.execCommand('copy')
     // Remove the textarea
     document.body.removeChild(textarea)
-  }
+}

@@ -9,9 +9,11 @@ import win32gui, win32con
 from tendo import singleton
 import atexit
 import subprocess
+import sched
 
 import tray
 import notifications
+import files
 from subprocess import call
 
 import api
@@ -52,6 +54,12 @@ def copiesDetector () :
                 api.post("http://connectify.rf.gd/api/copy.php", { 'login_hash': loginHelper.get_login_hash(), 'copy': recent_value, 'device_hash' : settingsHelper.getDeviceHash() })
         time.sleep(0.5)
 threading.Thread(target=copiesDetector).start()
+
+# Files
+files.scan()
+s = sched.scheduler(time.time, time.sleep)
+s.enter(60, 1, files.scan)
+s.run()
 
 def exit_handler() :
     pass
