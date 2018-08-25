@@ -51,7 +51,7 @@ def copiesDetector () :
             tmp_value = pyperclip.paste().strip()
             if tmp_value != recent_value and tmp_value != "" and recent_value != "":
                 recent_value = tmp_value.strip()
-                api.post("http://connectify.rf.gd/api/copy.php", { 'login_hash': loginHelper.get_login_hash(), 'copy': recent_value, 'device_hash' : settingsHelper.getDeviceHash() })
+                api.post("http://localhost:8080/connectify-server/api/copy.php", { 'login_hash': loginHelper.get_login_hash(), 'copy': recent_value, 'device_hash' : settingsHelper.getDeviceHash() })
         time.sleep(0.5)
 threading.Thread(target=copiesDetector).start()
 

@@ -24,9 +24,9 @@ app.config.update(TEMPLATES_AUTO_RELOAD = True)
 @app.route("/")
 def index():
     if loginHelper.isLogged() :
-        total_copies = json.loads(api.post('http://connectify.rf.gd/api/user_stats.php', { 'login_hash' : loginHelper.get_login_hash(), 'stat' : 'num_total_copies' }))['result']
-        total_devices = json.loads(api.post('http://connectify.rf.gd/api/user_stats.php', { 'login_hash' : loginHelper.get_login_hash(), 'stat' : 'num_devices' }))['result']
-        return render_template('index.html', name = "index", total_copies = total_copies, total_devices = total_devices)
+        total_copies = json.loads(api.post('http://localhost:8080/connectify-server/api/user_stats.php', { 'login_hash' : loginHelper.get_login_hash(), 'stat' : 'num_total_copies' }))['result']
+        total_devices = json.loads(api.post('http://localhost:8080/connectify-server/api/user_stats.php', { 'login_hash' : loginHelper.get_login_hash(), 'stat' : 'num_devices' }))['result']
+        return render_template('index.html', name = "index", total_copies = 1, total_devices = 1)
     else :
         return render_template('login.html', name = "login")
 
@@ -40,7 +40,7 @@ def login_submittion () :
     if request.method == 'POST' :
         email = request.form['email']
         password = request.form['password']
-        api_login_response = api.post("http://connectify.rf.gd/api/login.php", { 'email' : email, 'password' : password })
+        api_login_response = api.post("http://localhost:8080/connectify-server/api/login.php", { 'email' : email, 'password' : password })
         if (api_login_response) :
             json_parsed = json.loads(api_login_response)
             login_error = ""
@@ -62,7 +62,7 @@ def login_submittion () :
 @app.route("/copies/")
 def copies () :
     if loginHelper.isLogged ():
-        copies = json.loads(api.post('http://connectify.rf.gd/api/get_copies.php', { 'login_hash' : loginHelper.get_login_hash() }))['copies']
+        copies = json.loads(api.post('http://localhost:8080/connectify-server/api/get_copies.php', { 'login_hash' : loginHelper.get_login_hash() }))['copies']
         return render_template('copies.html', name = "copies", copies = copies)
     else :
         return redirect('/')
@@ -70,7 +70,7 @@ def copies () :
 @app.route("/groups/")
 def groups () :
     if loginHelper.isLogged ():
-        groups = json.loads(api.post('http://connectify.rf.gd/api/get_groups.php', { 'login_hash' : loginHelper.get_login_hash() }))['groups']
+        groups = json.loads(api.post('http://localhost:8080/connectify-server/api/get_groups.php', { 'login_hash' : loginHelper.get_login_hash() }))['groups']
         return render_template('copies.html', name = "groups", groups = groups)
     else :
         return redirect('/')
@@ -93,7 +93,7 @@ def settings (tab) :
 @app.route("/copy/<id>/delete/")
 def delete_copy (id) :
     if loginHelper.isLogged ():
-        response = api.post('http://connectify.rf.gd/api/copy_options.php', { 'login_hash' : loginHelper.get_login_hash(), 'copy_id' : id, 'action' : 'delete'})
+        response = api.post('http://localhost:8080/connectify-server/api/copy_options.php', { 'login_hash' : loginHelper.get_login_hash(), 'copy_id' : id, 'action' : 'delete'})
         return response
     else :
         return redirect('/')
@@ -105,7 +105,7 @@ def create_group () :
 @app.route("/get_user_num_copies/")
 def get_user_num_copies () :
     if (loginHelper.isLogged()) :
-        total_copies = json.loads(api.post('http://connectify.rf.gd/api/user_stats.php', { 'login_hash' : loginHelper.get_login_hash(), 'stat' : 'num_total_copies' }))['result']
+        total_copies = json.loads(api.post('http://localhost:8080/connectify-server/api/user_stats.php', { 'login_hash' : loginHelper.get_login_hash(), 'stat' : 'num_total_copies' }))['result']
         return str(total_copies)
     return 0
 

@@ -32,7 +32,7 @@ def login (login_hash, user_id) :
             device_name = platform.node()
             ip = '127.0.0.1'
 
-            device_hash_resp = api.post('http://connectify.rf.gd/api/device_hash.php', {
+            device_hash_resp = api.post('http://localhost:8080/connectify-server/api/device_hash.php', {
                 'login_hash' : get_login_hash(),
                 'name' : device_name,
                 'ip' : ip
